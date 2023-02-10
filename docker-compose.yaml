@@ -1,11 +1,17 @@
-
 version: "3"
 
 services:
   app:
+    networks:
+      - default
     build: .
     container_name: simulator
     volumes:
-      - .:/go/src/
+      - .:/go/src
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
+
+networks:
+  default:
+    external:
+      name: kafka_default
